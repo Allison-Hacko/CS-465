@@ -1,9 +1,13 @@
-var fs = require("fs");
+var Trip = require("../models/travlr");
 
-var trips = JSON.parse(fs.readFileSync("./data/trips.json", "utf8"));
-
-const travel = (req, res) => {
-    res.render("travel", { title: "Travel", trips });
+const travel = async (req, res) => {
+    try {
+        const trips = await Trip.find({});
+        res.render("travel", { title: "Travel", trips });
+    } catch (err) {
+        console.log("Error retrieving trips:", err);
+        res.status(500).send("Error retrieving trips");
+    }
 };
 
 module.exports = {
