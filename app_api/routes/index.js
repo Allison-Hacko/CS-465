@@ -1,18 +1,30 @@
-﻿const express = require("express");
+﻿const express = require('express');
 const router = express.Router();
-const tripsController = require("../controllers/trips");
+const tripsController = require('../controllers/trips');
+const authentication = require('../controllers/authentication');
+const passport = require('../config/passport');
+const { expressjwt: jwt } = require('express-jwt');
 
-// GET all trips and POST a new trip
-router
-    .route("/trips")
-    .get(tripsController.tripsList)
-    .post(tripsController.tripsAddTrip);
+const requireAuth = jwt({
+    secret: process.env.JWT_SECRET,
+    algorithms: ['HS256']
+});
 
-// GET, UPDATE, or DELETE one trip by code
-router
-    .route("/trips/:tripCode")
-    .get(tripsController.tripsFindByCode)
-    .put(tripsController.tripsUpdateTrip)
-    .delete(tripsController.tripsDeleteTrip);
+// Authentication endpoints
+router.post('/register', authentication.register);
+router.post(
+    '/login',
+    passport.authenticate('local', { session: false }),
+    authentication.login
+);
+
+// Public trip browsing
+router.get('/trips', tripsController.tripsList);
+router.get('/trips/:tripCode', tripsController.tripsFindByCode);
+
+// Protected trip management
+router.post('/trips', requireAuth, tripsController.tripsAddTrip);
+router.put('/trips/:tripCode', requireAuth, tripsController.tripsUpdateTrip);
+router.delete('/trips/:tripCode', requireAuth, tripsController.tripsDeleteTrip);
 
 module.exports = router;
