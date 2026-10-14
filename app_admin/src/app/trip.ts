@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -14,9 +14,7 @@ export interface TripData {
   description: string;
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class Trip {
   private apiUrl = '/api/trips';
 
@@ -27,7 +25,7 @@ export class Trip {
   }
 
   getTrip(code: string): Observable<TripData> {
-    return this.http.get<TripData>(`${this.apiUrl}/${code}`);
+    return this.http.get<TripData>(`${this.apiUrl}/${encodeURIComponent(code)}`);
   }
 
   addTrip(trip: TripData): Observable<TripData> {
@@ -35,6 +33,10 @@ export class Trip {
   }
 
   updateTrip(code: string, trip: TripData): Observable<TripData> {
-    return this.http.put<TripData>(`${this.apiUrl}/${code}`, trip);
+    return this.http.put<TripData>(`${this.apiUrl}/${encodeURIComponent(code)}`, trip);
+  }
+
+  deleteTrip(code: string): Observable<unknown> {
+    return this.http.delete(`${this.apiUrl}/${encodeURIComponent(code)}`);
   }
 }

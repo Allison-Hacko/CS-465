@@ -12,4 +12,10 @@ import { TripData } from '../trip';
 export class TripCard {
   @Input({ required: true }) trip!: TripData;
   imageError = false;
+
+  get imageUrl(): string {
+    if (!this.trip.image) return '';
+    const path = this.trip.image.replace(/^\/+/, '').replace(/^images\//, '');
+    return `http://localhost:3000/images/${path}`;
+  }
 }

@@ -1,6 +1,6 @@
 <article class="trip-card">
   <div class="trip-image">
-    <img [src]="trip.image" [alt]="trip.name" (error)="imageError = true" [hidden]="imageError">
+    <img [src]="imageUrl" [alt]="trip.name" (error)="imageError = true" [hidden]="imageError">
     @if (imageError || !trip.image) {
       <div class="image-placeholder">? TRAVLR</div>
     }
@@ -13,10 +13,12 @@
     <p class="trip-description">{{ trip.description }}</p>
 
     <div class="trip-meta">
-      <span>? {{ trip.length }}</span>
+      <span>{{ trip.length }}</span>
       <span>Departure: {{ trip.start | date:'mediumDate' }}</span>
     </div>
 
     <div class="trip-price">{{ trip.perPerson }} <small>/ person</small></div>
   </div>
 </article>
+
+
