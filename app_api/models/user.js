@@ -1,4 +1,4 @@
-﻿const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
@@ -14,6 +14,12 @@ const userSchema = new mongoose.Schema({
         unique: true,
         lowercase: true,
         trim: true
+    },
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user',
+        required: true
     },
     hash: {
         type: String,
@@ -47,7 +53,8 @@ userSchema.methods.generateJWT = function () {
         {
             _id: this._id.toString(),
             email: this.email,
-            name: this.name
+            name: this.name,
+            role: this.role
         },
         process.env.JWT_SECRET,
         { expiresIn: '1h' }

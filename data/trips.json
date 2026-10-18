@@ -1,32 +1,42 @@
 [
     {
-        "code": "Gale1",
-        "name": "Gale Reef",
-        "length": "4 nights / 5 days",
-        "start": "2026-11-15",
-        "resort": "Gale Reef Resort",
-        "perPerson": "$799",
-        "image": "reef1.jpg",
-        "description": "Gale Reef - Sed et augue lorem. In sit amet placerat arcu. Mauris volutpat ipsum ac justo mollis vel vestibulum orci gravida. Vestibulum sit amet porttitor odio. Nulla facilisi. Fusce at pretium felis. Sed consequat libero ut turpis venenatis ut aliquam risus semper. Etiam convallis mi vel risus pretium sodales. Etiam nunc lorem ullamcorper vitae laoreet."
+        "code":  "Gale1",
+        "name":  "Gale Reef",
+        "length":  "4 nights / 5 days",
+        "start":  "2026-11-15",
+        "resort":  "Gale Reef Resort",
+        "perPerson":  "$799",
+        "image":  "reef1.jpg",
+        "description":  "Escape to Gale Reef for a tropical getaway surrounded by crystal-clear waters, colorful coral formations, and fascinating marine life. Spend your days snorkeling through vibrant reefs, discovering the beauty beneath the waves, or relaxing along the sunny coastline. Whether you\u0027re looking for exciting ocean adventures or a peaceful place to unwind, Gale Reef offers a memorable island experience."
     },
     {
-        "code": "Dawson1",
-        "name": "Dawson's Reef",
-        "length": "5 nights / 6 days",
-        "start": "2026-12-01",
-        "resort": "Dawson's Reef Resort",
-        "perPerson": "$899",
-        "image": "reef2.jpg",
-        "description": "Dawson's Reef - Integer magna leo, posuere et dignissim vitae, porttitor at odio. Pellentesque a metus nec magna placerat volutpat. Nunc nisi mi, elementum sit amet aliquet quis, tristique quis nisl. Curabitur odio lacus, blandit ut hendrerit vulputate, vulputate at est. Morbi aliquet viverra metus eu consectetur. In lorem dui, elementum sit amet convallis ac, tincidunt vel sapien."
+        "code":  "Dawson1",
+        "name":  "Dawson\u0027s Reef",
+        "length":  "5 nights / 6 days",
+        "start":  "2026-12-01",
+        "resort":  "Dawson\u0027s Reef Resort",
+        "perPerson":  "$899",
+        "image":  "reef2.jpg",
+        "description":  "Discover the relaxing charm of Dawson\u0027s Reef, a tropical destination featuring beautiful shorelines, sparkling ocean waters, and plenty of opportunities for adventure. Explore the coast, enjoy refreshing swims, or spend a lazy afternoon taking in the warm island breeze. With its inviting scenery and laid-back atmosphere, Dawson\u0027s Reef is an ideal getaway for travelers who want to recharge while experiencing the beauty of the sea."
     },
     {
-        "code": "Claire1",
-        "name": "Claire's REEF",
-        "length": "6 nights / 7 days",
-        "start": "2027-01-10",
-        "resort": "Claire's Reef Resort",
-        "perPerson": "$999",
-        "image": "reef3.jpg",
-        "description": "Claire's REEF - Donec sed felis risus. Nulla facilisi. Donec a orci tellus, et auctor odio. Fusce ac orci nibh, quis semper arcu. Cras orci neque, euismod et accumsan ac, sagittis molestie lorem. Proin odio sapien, elementum at tempor non. Vulputate eget libero. In hac habitasse platea dictumst. Integer purus justo, egestas eu consectetur eu, cursus in tortor. Quisque nec nunc ac mi ultrices iaculis."
+        "code":  "Claire1",
+        "name":  "Claire\u0027s Reef",
+        "length":  "6 nights / 7 days",
+        "start":  "2027-01-10",
+        "resort":  "Claire\u0027s Reef Resort",
+        "perPerson":  "$999",
+        "image":  "reef3.jpg",
+        "description":  "Experience the wonders of Claire\u0027s REEF, where colorful coral gardens and incredible marine life create an unforgettable underwater escape. Spend your vacation exploring the clear blue waters, discovering the beauty of the reef, and enjoying peaceful moments by the shore. From adventurous days in the ocean to relaxing evenings surrounded by tropical scenery, this destination offers a wonderful balance of exploration and relaxation."
+    },
+    {
+        "code":  "CR2027",
+        "name":  "Coral Gardens Reef",
+        "length":  "6 nights / 7 days",
+        "start":  "2027-06-15",
+        "resort":  "Coral Gardens Resort",
+        "perPerson":  "$1,499",
+        "image":  "images/reef_5.jpg",
+        "description":  "Discover the beauty of Coral Gardens Reef on a seven-day tropical getaway filled with colorful coral formations, crystal-clear waters, and incredible marine life. Spend your days snorkeling among vibrant underwater gardens, exploring the coastline, or relaxing beside the ocean at Coral Gardens Resort. With a mix of aquatic adventure and peaceful beachside relaxation, this getaway is perfect for travelers looking to enjoy a memorable escape to the tropics."
     }
 ]
