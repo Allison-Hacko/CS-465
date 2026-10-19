@@ -1,77 +1,176 @@
-# CS-465 Travlr Getaways
+﻿# Travlr Getaways
 
-## Project Setup
+A full-stack travel application built with Node.js, Express, Handlebars, Angular, and MongoDB. The project combines a server-rendered travel website, a REST API, and an Angular administrative single-page application.
 
-### Prerequisites
-- Node.js and npm
-- MongoDB running locally, or an accessible MongoDB server
+## Overview
 
-### Configure the environment
-1. Copy `.env.example` to `.env` in the project root.
-2. Replace the placeholder `JWT_SECRET` with a long, random secret.
-3. Set `DB_HOST` to your MongoDB host. For a local database, use `127.0.0.1`.
-4. Keep `.env` private. Never commit or share your real secret.
+Travlr Getaways demonstrates how a frontend, backend, API, and database work together in a full-stack web application. Express handles server requests and API routes, Handlebars renders server-side pages, Angular provides the administrative interface, and MongoDB stores trip information.
 
-The application uses the `travlr` MongoDB database.
+## Features
 
-### Start the backend
-From the project root, run:
+- Server-rendered pages using Express and Handlebars.
+- Client-side JavaScript for browser interactions.
+- REST API endpoints for retrieving, creating, and updating trip records.
+- MongoDB database integration using Mongoose.
+- Angular administrative single-page application.
+- JWT-based authentication for protected administrative functionality.
+- Postman collection for testing API requests.
+
+## Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| Node.js | Backend JavaScript runtime |
+| Express | Web server and API routing |
+| Handlebars | Server-side page templates |
+| JavaScript | Application behavior and browser interactions |
+| Angular | Administrative single-page application |
+| MongoDB | Database |
+| Mongoose | Database modeling and access |
+| JSON Web Tokens (JWT) | Authentication |
+| Postman | API testing |
+
+## Project Structure
+
+- `app_admin/` - Angular administrative application.
+- `bin/` - Backend server startup configuration.
+- `routes/` - Backend route definitions.
+- `app.js` - Express application configuration.
+- `package.json` - Backend dependencies and scripts.
+- `app_admin/package.json` - Angular dependencies and scripts.
+- `.env.example` - Template for local environment variables.
+- `Travlr_API_Tests.postman_collection.json` - Postman API test collection.
+- `travlr.zip` - Packaged project artifact.
+
+## Prerequisites
+
+Install the following software:
+
+- [Node.js and npm](https://nodejs.org/)
+- [MongoDB Community Server](https://www.mongodb.com/try/download/community)
+- [Postman](https://www.postman.com/) for running the included API requests
+
+## Installation and Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Allison-Hacko/CS-465.git
+cd CS-465
+```
+
+### 2. Configure environment variables
+
+Create a local `.env` file from the example:
 
 ```powershell
+Copy-Item .env.example .env
+```
+
+Edit `.env` and replace the placeholder JWT secret with a long, randomly generated secret.
+
+```dotenv
+JWT_SECRET=your-long-random-secret
+DB_HOST=127.0.0.1
+```
+
+Keep your actual `.env` file private. Do not commit real secrets or credentials to GitHub.
+
+### 3. Start MongoDB
+
+Make sure your local MongoDB server is running. The application uses the `travlr` database.
+
+### 4. Install dependencies and start the backend
+
+From the repository root, run:
+
+```bash
 npm ci
 npm start
 ```
 
-The backend normally runs at `http://localhost:3000`.
+The backend is expected to run at `http://localhost:3000`.
 
-### Start the Angular admin application
-Open a second terminal and run:
+### 5. Start the Angular administration application
 
-```powershell
-Set-Location app_admin
+Open a second terminal:
+
+```bash
+cd app_admin
 npm ci
 npm start
 ```
 
-The Angular development server normally runs at `http://localhost:4200`.
+The Angular development server is expected to run at `http://localhost:4200`.
 
-### Setup notes
-- Configure the environment before starting the backend. The API requires `JWT_SECRET` for JWT authentication.
-- Ensure MongoDB is running before using database-backed features.
-- The `.env.example` file contains placeholders only, not production credentials.
+Keep both servers running while testing the application.
 
----
+## API Endpoints
 
-# Module Eight Journal: Travlr Full-Stack Application
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/trips` | Retrieve the trip collection |
+| POST | `/api/trips` | Create a trip record |
+| GET | `/api/trips/:tripCode` | Retrieve a trip by its code |
+| PUT | `/api/trips/:tripCode` | Update a trip by its code |
 
-## Architecture
+Replace `:tripCode` with the code of the trip you want to retrieve or update.
 
-The Travlr project helped me understand how the different parts of a full-stack application work together. The Express application uses server-side rendering with Handlebars to generate pages, while JavaScript adds interactive behavior in the browser. The Angular admin application takes a different approach by working as a single-page application (SPA). Instead of loading an entirely new page for each interaction, Angular can update parts of the interface as users work with the application.
+The API uses JSON to exchange structured trip data. Protected administrative requests must meet the application's JWT authentication requirements.
 
-These approaches serve different purposes. Server-side rendering works well for delivering complete pages, while a SPA can make an administrative interface feel more responsive and organized. Using an API between the frontend and backend also helps separate the user interface from the data and application logic.
+## API Testing
 
-I used MongoDB for the database because its document-based structure works well with the trip data used in the project. With Mongoose, I could define models and work with database records through the application. A relational database would also be a valid choice for many applications, especially when strict relationships between tables are important. For this project, MongoDB fit the document-oriented data structure and the technologies used throughout the application.
+The repository includes `Travlr_API_Tests.postman_collection.json`, which can be imported into Postman.
 
-## Functionality
+Recommended testing workflow:
 
-One important distinction I learned is that JSON and JavaScript are not the same thing. JavaScript is a programming language used to build application behavior, while JSON is a text format for representing and exchanging structured data. The frontend can send a request to the Express API, receive trip information in JSON format, and use JavaScript or Angular to display that information.
+1. Start MongoDB and the backend server.
+2. Import the Postman collection.
+3. Send a GET request to `/api/trips` and inspect the returned trip data.
+4. Send a GET request to `/api/trips/:tripCode` to test retrieving an individual trip.
+5. Use POST with a new test record to test trip creation.
+6. Use PUT to update that test record and verify the changes.
+7. Test protected endpoints with valid authentication and check how unauthorized requests are handled.
+8. Open the Angular application in a browser and test its administrative functionality.
 
-For example, the trips API supports retrieving trip data through GET requests and creating or updating records through POST and PUT requests. This gives the frontend a consistent way to communicate with the backend without needing to know how the database stores each record internally.
+Use test records when testing create and update operations so important data is not accidentally changed.
 
-Refactoring also helped me see the value of separating responsibilities. Keeping database models, routes, and application logic in separate areas makes the code easier to follow and maintain. Reusable Angular components provide a similar benefit on the frontend. Rather than rebuilding the same interface elements in several places, components can be reused and updated in one place. This reduces duplicated code and makes future changes easier to manage.
+## Security and Configuration
 
-## Testing
+- Store secrets in environment variables rather than hardcoding them.
+- Use a strong, private JWT secret.
+- Do not commit `.env` files containing real credentials.
+- Provide valid authentication for protected operations.
+- Use `npm ci` to install dependencies from the project's lockfiles.
 
-Testing the API helped me understand how HTTP methods support different operations. GET requests retrieve information, POST requests create records, and PUT requests update existing records. The trips API includes routes such as `/api/trips` and `/api/trips/:tripCode`, which allow the application to retrieve and manage trip data.
+## Development Notes and Course Competencies
 
-API testing is useful because it lets me check whether the backend behaves correctly independently of the user interface. A request can succeed or fail for reasons that are easier to identify when the API response is inspected directly. The Postman collection included with this project provides a way to organize and repeat API tests.
+### Architecture
 
-Security was another important part of the project. Routes that change data should not be available to every request without appropriate checks. JSON Web Token (JWT) authentication helps the backend verify a user's authorization before allowing protected operations. Testing unauthorized requests is important because an API should reject requests that do not provide valid authentication. Environment variables also help keep secrets separate from the application source code. The real `.env` file should remain private and must not be committed to the repository.
+The application combines server-rendered pages, client-side JavaScript, a REST API, an Angular administrative interface, and a MongoDB database. Express manages server requests and routing, Handlebars renders pages, and Mongoose provides database access. Angular supports a separate single-page administrative experience.
 
-## Reflection
+Separating these responsibilities makes the application easier to organize, maintain, and troubleshoot. Each layer has a defined role while relying on the others to deliver the complete application.
 
-Working on Travlr gave me a better understanding of how a full-stack application fits together. I had to think about the frontend, backend, database, API requests, and security instead of treating each part as an isolated assignment. I also learned that getting a feature to work is only part of the process. The code still needs to be understandable, testable, and maintainable.
+### Functionality
 
-Some of the most useful skills I practiced were debugging, organizing code, working with MongoDB and Mongoose, building API routes, using Angular, and testing requests. I also became more comfortable investigating problems rather than assuming that the first solution would be the right one. When something did not work as expected, I had to narrow down where the problem was happening and check how the different parts of the application interacted.
+JSON is a text-based format for exchanging structured data, while JavaScript is a programming language used to implement application behavior. The API uses JSON to transfer trip information between the frontend and backend.
 
-These skills are useful for my career goals in computer science because employers need developers who can do more than write code that works once. They need people who can understand an existing project, improve it, test their changes, and explain their decisions. Travlr gave me practical experience with those responsibilities, and documenting the project helps me communicate what I learned and show the work I completed.
+The API uses GET to retrieve data, POST to create records, and PUT to update existing records. The Angular application communicates with backend services through HTTP requests. Organizing functionality into reusable components and distinct responsibilities helps reduce duplication and makes future changes easier to manage.
+
+### Testing
+
+The Postman collection allows API requests to be tested independently of the user interface. GET requests can verify retrieval, while POST and PUT requests can verify record creation and updates. Testing individual endpoints helps distinguish backend problems from frontend issues.
+
+Authentication also needs to be tested because protected administrative operations should not be available to unauthorized users. Environment variables and database connectivity must be configured correctly before the application can be tested reliably.
+
+### Reflection
+
+Developing this application provided practical experience connecting frontend interfaces, backend routes, authentication, and database operations. It reinforced the importance of testing individual parts of a full-stack application rather than assuming that a working page means the entire system works correctly.
+
+The project demonstrates skills in web development, API design, database integration, debugging, and technical documentation. These skills provide a foundation for building and maintaining larger applications.
+
+## Author
+
+Allison Hacko
+
+[GitHub Repository](https://github.com/Allison-Hacko/CS-465)
